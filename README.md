@@ -1,5 +1,5 @@
-# badbunny-ascii
+# ascii
 
-converter videos (like bad bunny) into ascii and watch them run
+convert videos (like bad apple) into ascii and run them in the terminal
 
 [demo](https://www.youtube.com/watch?v=242oTd1kDbc)
