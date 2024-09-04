@@ -6,18 +6,17 @@ import cv2 as cv
 
 
 class Video:
-    def __init__(self, name, fps=60):
+    def __init__(self, name, fps=60, reverse=False):
         self.frame = 0
+        self.reverse = reverse
         self.name = name
-        self.audio = sa.WaveObject.from_wave_file(
-            f"../videos/{name}/audio.wav")
+        self.audio = sa.WaveObject.from_wave_file(f"../videos/{name}/audio.wav")
         self.fps = fps
         self.frames_path = f"../videos/{self.name}/frames"
 
     def create_frames(self):
         for f in os.listdir(self.frames_path):
             if os.path.isfile(os.path.join(self.frames_path, f)):
-                print(f)
                 return
 
         vidcap = cv.VideoCapture(f"../videos/{self.name}/video.mp4")
@@ -40,7 +39,7 @@ class Video:
             if not os.path.isfile(os.path.join(self.frames_path, f"frame{count}.jpg")):
                 return
 
-            frame = Image(f"{self.frames_path}/frame{self.frame}.jpg")
+            frame = Image(f"{self.frames_path}/frame{self.frame}.jpg", self.reverse)
             frame.generate()
             self.frame += 1
             time.sleep(1 / self.fps)

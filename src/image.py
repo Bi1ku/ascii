@@ -4,13 +4,14 @@ import math
 import os
 
 
+density = " .:-=+*#%@"
 width = os.get_terminal_size().columns
-density = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\\|()1{}[]?-_+~<>i!lI;:,\"^`'. "
 
 
 class Image:
-    def __init__(self, path):
+    def __init__(self, path, reverse=False):
         self.path = path
+        self.reverse = reverse
 
     def generate(self):
         with PImage.open(self.path) as img:
@@ -24,16 +25,18 @@ class Image:
                 pixel_idx = 0
 
                 while pixel_idx < len(data[round(row_idx)]):
+                    density_idx = round(
+                        sum(data[round(row_idx)][pixel_idx][:3] / 3)
+                        * ((len(density) - 1) / 255)
+                    )
+
                     ascii += str(
-                        density[
-                            round(
-                                sum(data[round(row_idx)][pixel_idx][:3] / 3)
-                                * ((len(density) - 1) / 255)
-                            )
-                        ]
+                        density[::-1][density_idx]
+                        if self.reverse
+                        else density[density_idx]
                     )
 
                     pixel_idx += inc
 
-                row_idx += inc * 2
+                row_idx += inc * 2.7
                 print(ascii)
