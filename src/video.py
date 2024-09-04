@@ -10,7 +10,8 @@ class Video:
         self.frame = 0
         self.reverse = reverse
         self.name = name
-        self.audio = sa.WaveObject.from_wave_file(f"../videos/{name}/audio.wav")
+        self.audio = sa.WaveObject.from_wave_file(
+            f"../videos/{name}/audio.wav")
         self.fps = fps
         self.frames_path = f"../videos/{self.name}/frames"
 
@@ -33,13 +34,14 @@ class Video:
 
     def play(self):
         self.audio.play()
-
         count = 0
+
         while 1:
             if not os.path.isfile(os.path.join(self.frames_path, f"frame{count}.jpg")):
                 return
 
-            frame = Image(f"{self.frames_path}/frame{self.frame}.jpg", self.reverse)
+            frame = Image(
+                f"{self.frames_path}/frame{self.frame}.jpg", self.reverse)
             frame.generate()
             self.frame += 1
             time.sleep(1 / self.fps)

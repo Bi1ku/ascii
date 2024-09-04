@@ -1,6 +1,6 @@
 import cv2 as cv
 
-name = "bad_apple"
+name = "spiral"
 vidcap = cv.VideoCapture(f"../videos/{name}/video.mp4")
 exists, image = vidcap.read()
 count = 0

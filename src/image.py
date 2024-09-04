@@ -38,5 +38,5 @@ class Image:
 
                     pixel_idx += inc
 
-                row_idx += inc * 2.7
+                row_idx += inc * 2
                 print(ascii)
