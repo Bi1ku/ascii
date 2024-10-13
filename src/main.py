@@ -1,5 +1,5 @@
 from video import Video
 
-vid = Video("spiral", 60)
+vid = Video("bad_apple", 90)
 vid.create_frames()
 vid.play()
